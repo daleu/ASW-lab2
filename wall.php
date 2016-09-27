@@ -23,9 +23,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 		
 	case 'PUT':
+		$data = new SimpleXMLElement(file_get_contents('php://input'));
+		$idtweet = $dbhandler -> insertTweet($data->author, $data->text);
 		
-		// To be implemented (See Task #4)
+		$outdata = new SimpleXMLElement('<response></response>');
+		$outdata->tweet_id = $idtweet;
+		$outdata->tweet_id->addAttribute("author",$data->author);
 		
+		echo $outdata->asXML();
         exit;
 		
 	case 'DELETE':
