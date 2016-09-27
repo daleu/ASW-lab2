@@ -17,9 +17,9 @@ if (isset($_GET['tweet_id']))  // Invoked by the JavaScript function likeHandler
 switch ($_SERVER['REQUEST_METHOD']) {
 
 	case 'POST': 
-		
-		// To be implemented (See Task #2)
-		
+ 
+		$dbhandler -> insertTweet($_POST["author"], $_POST["tweet_text"]);
+		  
 		break;
 		
 	case 'PUT':
