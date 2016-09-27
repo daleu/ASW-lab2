@@ -21,4 +21,18 @@ $opts = array('http' =>
 $context = stream_context_create($opts);
 $result = file_get_contents($URI, false, $context);
 echo $result;
+
+$deleteXML = new SimpleXMLElement($result);
+$idTweet = $deleteXML->tweet_id;
+
+$URI_QUERY = $URI.'?twid='.$idTweet;
+$ops_delete = array('http' =>
+    array(
+        'method'  => 'DELETE',
+        )
+);
+
+$context_delete = stream_context_create($ops_delete);
+$result_delete = file_get_contents($URI_QUERY, false, $context_delete);
+echo $result_delete;
 ?>
